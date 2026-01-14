@@ -1,4 +1,6 @@
 import { ArrowDown } from "lucide-react";
+import { motion } from "framer-motion";
+import { ScrollReveal, StaggerContainer, StaggerItem } from "./animations/ScrollReveal";
 
 interface DrinkCardProps {
   number: string;
@@ -11,6 +13,7 @@ interface DrinkCardProps {
   description: string;
   caffeine: "HIGH" | "MED" | "LOW" | "NONE";
   vibeLevel: number;
+  index: number;
 }
 
 const DrinkCard = ({
@@ -24,6 +27,7 @@ const DrinkCard = ({
   description,
   caffeine,
   vibeLevel,
+  index,
 }: DrinkCardProps) => {
   const badgeColors = {
     bestseller: "bg-primary text-primary-foreground",
@@ -41,7 +45,14 @@ const DrinkCard = ({
   };
 
   return (
-    <div className="drink-card rounded-2xl overflow-hidden min-w-[320px] md:min-w-[380px]">
+    <motion.div
+      initial={{ opacity: 0, y: 50, rotateY: -10 }}
+      whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
+      transition={{ duration: 0.6, delay: index * 0.1, ease: [0.25, 0.4, 0.25, 1] }}
+      viewport={{ once: true, margin: "-50px" }}
+      whileHover={{ y: -8, transition: { duration: 0.3 } }}
+      className="drink-card rounded-2xl overflow-hidden min-w-[320px] md:min-w-[380px]"
+    >
       {/* Header */}
       <div className="p-4 flex justify-between items-start">
         <div>
@@ -52,16 +63,26 @@ const DrinkCard = ({
       </div>
 
       {/* Image */}
-      <div className="relative mx-4 rounded-xl overflow-hidden">
+      <motion.div
+        className="relative mx-4 rounded-xl overflow-hidden"
+        whileHover={{ scale: 1.03 }}
+        transition={{ duration: 0.3 }}
+      >
         <img
           src={image}
           alt={name}
           className="w-full h-48 object-cover"
         />
-        <span className={`absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-bold uppercase ${badgeColors[badgeType]}`}>
+        <motion.span
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.3 + index * 0.1 }}
+          viewport={{ once: true }}
+          className={`absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-bold uppercase ${badgeColors[badgeType]}`}
+        >
           {badge}
-        </span>
-      </div>
+        </motion.span>
+      </motion.div>
 
       {/* Content */}
       <div className="p-4 space-y-4">
@@ -83,8 +104,12 @@ const DrinkCard = ({
             <p className="text-xs text-muted-foreground mb-1">Vibe Level</p>
             <div className="flex gap-1">
               {[1, 2, 3, 4, 5].map((i) => (
-                <div
+                <motion.div
                   key={i}
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  transition={{ delay: 0.5 + i * 0.05 + index * 0.1, type: "spring" }}
+                  viewport={{ once: true }}
                   className={`w-3 h-3 rounded-full ${i <= vibeLevel ? "bg-primary" : "bg-border"}`}
                 />
               ))}
@@ -92,21 +117,21 @@ const DrinkCard = ({
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
-const drinks: DrinkCardProps[] = [
+const drinks = [
   {
     number: "No. 01",
     subtitle: "/// THE OG CLASSIC",
     image: "https://images.unsplash.com/photo-1515823064-d6e0c04616a7?q=80&w=800&auto=format&fit=crop",
     badge: "BESTSELLER",
-    badgeType: "bestseller",
+    badgeType: "bestseller" as const,
     name: "DIRTY MATCHA",
     price: "¥800",
     description: "Ceremonial grade matcha floating on oat milk with a double shot of espresso.",
-    caffeine: "HIGH",
+    caffeine: "HIGH" as const,
     vibeLevel: 5,
   },
   {
@@ -114,11 +139,11 @@ const drinks: DrinkCardProps[] = [
     subtitle: "/// SPARKLING HIT",
     image: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?q=80&w=800&auto=format&fit=crop",
     badge: "REFRESH",
-    badgeType: "refresh",
+    badgeType: "refresh" as const,
     name: "YUZU TONIC",
     price: "¥750",
     description: "Cold brew coffee mixed with sparkling yuzu citrus, mint, and a dash of honey.",
-    caffeine: "MED",
+    caffeine: "MED" as const,
     vibeLevel: 4,
   },
   {
@@ -126,11 +151,11 @@ const drinks: DrinkCardProps[] = [
     subtitle: "/// SWEET DREAMS",
     image: "https://images.unsplash.com/photo-1708762028605-ad25725e87c3?q=80&w=800&auto=format&fit=crop",
     badge: "SWEET",
-    badgeType: "sweet",
+    badgeType: "sweet" as const,
     name: "STRAWBERRY CLOUD",
     price: "¥900",
     description: "Fresh strawberry puree, hokkaido milk, topped with thick matcha cold foam.",
-    caffeine: "LOW",
+    caffeine: "LOW" as const,
     vibeLevel: 5,
   },
   {
@@ -138,11 +163,11 @@ const drinks: DrinkCardProps[] = [
     subtitle: "/// GOTH LATTE",
     image: "https://plus.unsplash.com/premium_photo-1688385990713-a4f5574d6c9b?q=80&w=800&auto=format&fit=crop",
     badge: "LIMITED",
-    badgeType: "limited",
+    badgeType: "limited" as const,
     name: "BLACK SESAME",
     price: "¥850",
     description: "Roasted black sesame paste, charcoal bamboo, and steamed soy milk.",
-    caffeine: "NONE",
+    caffeine: "NONE" as const,
     vibeLevel: 4,
   },
   {
@@ -150,11 +175,11 @@ const drinks: DrinkCardProps[] = [
     subtitle: "/// MAGIC TEA",
     image: "https://images.unsplash.com/photo-1595981267035-7b04ca84a82d?q=80&w=800&auto=format&fit=crop",
     badge: "NEW",
-    badgeType: "new",
+    badgeType: "new" as const,
     name: "BLUE PEA FOG",
     price: "¥780",
     description: "Butterfly pea flower tea that changes color with lemon, topped with vanilla foam.",
-    caffeine: "LOW",
+    caffeine: "LOW" as const,
     vibeLevel: 5,
   },
 ];
@@ -163,7 +188,13 @@ const MenuSection = () => {
   return (
     <section id="menu" className="py-24 overflow-hidden">
       {/* Section Header Marquee */}
-      <div className="border-t border-b border-border py-3 mb-8 overflow-hidden">
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+        className="border-t border-b border-border py-3 mb-8 overflow-hidden"
+      >
         <div className="flex animate-marquee whitespace-nowrap">
           {[...Array(6)].map((_, i) => (
             <span key={i} className="mx-8 text-sm font-semibold tracking-widest">
@@ -171,27 +202,41 @@ const MenuSection = () => {
             </span>
           ))}
         </div>
-      </div>
+      </motion.div>
 
       {/* Header */}
       <div className="max-w-7xl mx-auto px-4 md:px-8 mb-12">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-          <div>
-            <p className="text-sm text-muted-foreground mb-2">Vol. 2025 /// Curated List</p>
-            <h2 className="text-5xl md:text-6xl font-bold">
-              CURRENT<br />ROTATION
-            </h2>
-          </div>
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <span className="text-sm">Scroll Down</span>
-              <ArrowDown className="w-4 h-4" />
+          <StaggerContainer>
+            <StaggerItem>
+              <p className="text-sm text-muted-foreground mb-2">Vol. 2025 /// Curated List</p>
+            </StaggerItem>
+            <StaggerItem>
+              <h2 className="text-5xl md:text-6xl font-bold">
+                CURRENT<br />ROTATION
+              </h2>
+            </StaggerItem>
+          </StaggerContainer>
+          
+          <ScrollReveal direction="right" delay={0.3}>
+            <div className="flex items-center gap-4">
+              <motion.div
+                animate={{ y: [0, 5, 0] }}
+                transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+                className="flex items-center gap-2 text-muted-foreground"
+              >
+                <span className="text-sm">Scroll Down</span>
+                <ArrowDown className="w-4 h-4" />
+              </motion.div>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                className="bg-card px-4 py-2 rounded-xl border border-border"
+              >
+                <p className="text-3xl font-bold">05</p>
+                <p className="text-xs text-muted-foreground">Items in Stack</p>
+              </motion.div>
             </div>
-            <div className="bg-card px-4 py-2 rounded-xl border border-border">
-              <p className="text-3xl font-bold">05</p>
-              <p className="text-xs text-muted-foreground">Items in Stack</p>
-            </div>
-          </div>
+          </ScrollReveal>
         </div>
       </div>
 
@@ -199,17 +244,21 @@ const MenuSection = () => {
       <div className="overflow-x-auto pb-8 scrollbar-thin">
         <div className="flex gap-6 px-4 md:px-8 min-w-max">
           {drinks.map((drink, index) => (
-            <DrinkCard key={index} {...drink} />
+            <DrinkCard key={index} {...drink} index={index} />
           ))}
         </div>
       </div>
 
       {/* View Full Archive */}
-      <div className="text-center mt-12">
-        <button className="btn-outline uppercase text-sm">
+      <ScrollReveal className="text-center mt-12">
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="btn-outline uppercase text-sm"
+        >
           View Full Archive ↗
-        </button>
-      </div>
+        </motion.button>
+      </ScrollReveal>
     </section>
   );
 };

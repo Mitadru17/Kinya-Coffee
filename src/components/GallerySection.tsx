@@ -1,3 +1,6 @@
+import { motion } from "framer-motion";
+import { ScrollReveal, StaggerContainer, StaggerItem } from "./animations/ScrollReveal";
+
 const images = [
   "https://images.unsplash.com/photo-1521017432531-fbd92d768814?q=80&w=800&auto=format&fit=crop",
   "https://images.unsplash.com/photo-1445116572660-236099ec97a0?q=80&w=800&auto=format&fit=crop",
@@ -9,25 +12,40 @@ const GallerySection = () => {
   return (
     <section className="py-24 overflow-hidden">
       {/* Header */}
-      <div className="max-w-7xl mx-auto px-4 md:px-8 mb-12">
-        <p className="text-sm text-muted-foreground mb-2">/// Community Feed</p>
-        <h2 className="text-5xl md:text-6xl font-bold">THE HYPE IS REAL</h2>
-      </div>
+      <StaggerContainer className="max-w-7xl mx-auto px-4 md:px-8 mb-12">
+        <StaggerItem>
+          <p className="text-sm text-muted-foreground mb-2">/// Community Feed</p>
+        </StaggerItem>
+        <StaggerItem>
+          <h2 className="text-5xl md:text-6xl font-bold">THE HYPE IS REAL</h2>
+        </StaggerItem>
+      </StaggerContainer>
 
       {/* Image Marquee */}
-      <div className="overflow-hidden">
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="overflow-hidden"
+      >
         <div className="flex animate-marquee">
           {[...images, ...images].map((src, index) => (
-            <div key={index} className="min-w-[300px] md:min-w-[400px] h-[300px] md:h-[400px] mx-2">
+            <motion.div
+              key={index}
+              whileHover={{ scale: 1.05, zIndex: 10 }}
+              transition={{ duration: 0.3 }}
+              className="min-w-[300px] md:min-w-[400px] h-[300px] md:h-[400px] mx-2"
+            >
               <img
                 src={src}
                 alt="Cafe vibe"
                 className="w-full h-full object-cover rounded-2xl"
               />
-            </div>
+            </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };
