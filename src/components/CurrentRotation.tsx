@@ -42,7 +42,7 @@ const drinks = [
     name: ["STRAWBERRY", "CLOUD"],
     price: "₹900",
     description: "Fresh strawberry puree, Hokkaido milk, topped with thick vanilla cold foam.",
-    image: "https://images.unsplash.com/photo-1587080266227-677cc2a4e76e?q=80&w=800&auto=format&fit=crop",
+    image: "https://cdn.apartmenttherapy.info/image/upload/f_auto,q_auto:eco,c_fill,g_auto,w_728,h_546/k%2FPhoto%2FRecipes%2F2025-01-WC-strawberry-cloud-smoothie%2FWC-strawberry-cloud-smoothie-026",
     tag: "LOW",
     vibeLevel: 85,
     bgColor: "bg-[#4a3728]",

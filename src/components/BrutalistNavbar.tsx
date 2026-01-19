@@ -41,9 +41,9 @@ const BrutalistNavbar = () => {
           scrolled ? "bg-canvas/80 backdrop-blur-md" : "bg-canvas/60 backdrop-blur-sm"
         }`}
       >
-        <div className="h-full max-w-[1800px] mx-auto px-6 flex items-center justify-between">
-          {/* Logo */}
-          <Link to="/">
+        <div className="h-full max-w-[1800px] mx-auto px-6 flex items-center">
+          {/* Logo - Left */}
+          <Link to="/" className="flex-shrink-0">
             <motion.div
               whileHover={{ scale: 1.02 }}
               className="display-font text-2xl md:text-3xl cursor-pointer text-ink"
@@ -53,7 +53,7 @@ const BrutalistNavbar = () => {
           </Link>
 
           {/* Center Links - Desktop */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center justify-center gap-8 flex-1 ml-48">
             {navLinks.map((link) => (
               link.path.startsWith("#") ? (
                 <motion.a
@@ -82,7 +82,7 @@ const BrutalistNavbar = () => {
           </div>
 
           {/* Right Section */}
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden md:flex items-center gap-4 flex-shrink-0">
             {/* Status Indicator */}
             <div className="flex items-center gap-2">
               <motion.div
