@@ -1,9 +1,11 @@
 import { motion } from "framer-motion";
-import { ScrollReveal, StaggerContainer, StaggerItem } from "./animations/ScrollReveal";
+import { ScrollReveal } from "./animations/ScrollReveal";
+import { StaggerContainer, StaggerItem } from "./animations/StaggerContainer";
+import { Button } from "./ui/button";
 
 const AboutSection = () => {
   return (
-    <section className="py-24 px-4 md:px-8">
+    <section id="workshops" className="py-24 px-4 md:px-8">
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
         {/* Left Side - Image & Receipt */}
         <ScrollReveal direction="left" className="relative">
@@ -24,7 +26,7 @@ const AboutSection = () => {
               viewport={{ once: true }}
               className="absolute bottom-4 left-4 bg-background/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium"
             >
-              Shibuya, 2025
+              JP Nagar, Bengaluru
             </motion.div>
           </motion.div>
 
@@ -40,13 +42,13 @@ const AboutSection = () => {
                 <span className="text-muted-foreground">12:45 PM</span>
               </div>
               <div className="space-y-2 border-t border-dashed border-border pt-4">
+                <p>1x SPANISH LATTE</p>
+                <p>1x KOREAN BUN</p>
                 <p>1x MATCHA LATTE</p>
-                <p>1x GOOD VIBES</p>
-                <p>1x LO-FI BEATS</p>
               </div>
               <div className="border-t border-dashed border-border mt-4 pt-4 flex justify-between font-bold">
                 <span>TOTAL</span>
-                <span>¥1,200</span>
+                <span>₹350</span>
               </div>
             </motion.div>
           </ScrollReveal>
@@ -58,7 +60,7 @@ const AboutSection = () => {
               transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
               className="bg-primary text-primary-foreground px-4 py-2 rounded-full text-xs font-bold tracking-wider"
             >
-              Certified Fresh
+              Quality Coffee
             </motion.div>
           </ScrollReveal>
         </ScrollReveal>
@@ -66,16 +68,16 @@ const AboutSection = () => {
         {/* Right Side - Content */}
         <StaggerContainer className="space-y-8">
           <StaggerItem>
-            <h2 className="text-5xl md:text-6xl font-bold leading-tight">
-              NOT JUST<br />COFFEE.
+            <h2 className="text-5xl md:text-6xl font-display font-black leading-tight">
+              ABOUT<br />KINYA COFFEE
             </h2>
           </StaggerItem>
           
           <StaggerItem>
             <p className="text-lg text-muted-foreground leading-relaxed max-w-md">
-              We blend traditional Japanese precision with the chaotic energy of Tokyo streets. 
-              Minimalist flavors, maximalist vibes. A space created for the digital nomads, 
-              the dreamers, and the matcha obsessives.
+              Kinya Coffee is a quiet neighborhood café in JP Nagar, Bengaluru, designed for people who enjoy 
+              slow mornings, mindful sipping, and calm spaces. Inspired by Japanese café culture, we focus on 
+              specialty coffee, handcrafted beverages, and freshly baked treats in a minimal, intimate setting.
             </p>
           </StaggerItem>
 
@@ -86,8 +88,8 @@ const AboutSection = () => {
               className="flex items-center gap-4 w-fit"
             >
               <div className="bg-card px-4 py-3 rounded-xl border border-border">
-                <p className="text-xs text-muted-foreground mb-1">Vibe Check</p>
-                <p className="font-bold text-lg">Immaculate</p>
+                <p className="text-xs text-muted-foreground mb-1">Atmosphere</p>
+                <p className="font-bold text-lg">Calm & Cozy</p>
               </div>
             </motion.div>
           </StaggerItem>
@@ -98,7 +100,7 @@ const AboutSection = () => {
               whileTap={{ scale: 0.95 }}
               className="btn-outline uppercase text-sm"
             >
-              Read Manifesto
+              Get Directions
             </motion.button>
           </StaggerItem>
         </StaggerContainer>

@@ -14,10 +14,10 @@ const GallerySection = () => {
       {/* Header */}
       <StaggerContainer className="max-w-7xl mx-auto px-4 md:px-8 mb-12">
         <StaggerItem>
-          <p className="text-sm text-muted-foreground mb-2">/// Community Feed</p>
+          <p className="text-sm text-muted-foreground mb-2">/// Our Space</p>
         </StaggerItem>
         <StaggerItem>
-          <h2 className="text-5xl md:text-6xl font-bold">THE HYPE IS REAL</h2>
+          <h2 className="text-5xl md:text-6xl font-display font-black leading-tight">CAFÉ MOMENTS</h2>
         </StaggerItem>
       </StaggerContainer>
 

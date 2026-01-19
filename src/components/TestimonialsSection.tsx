@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { StaggerContainer, StaggerItem } from "./animations/ScrollReveal";
 
 interface TestimonialProps {
   username: string;
@@ -8,24 +9,24 @@ interface TestimonialProps {
 
 const testimonials: TestimonialProps[] = [
   {
-    username: "@matcha_queen",
+    username: "Local Guide",
+    tag: "AMBIENCE",
+    quote: "Cozy ambience and a lovely place to unwind. The matcha latte was good and the Korean bun was soft and creamy.",
+  },
+  {
+    username: "Customer Review",
     tag: "VIBE",
-    quote: "This place is literally a pinterest board.",
+    quote: "A tiny café tucked away in JP Nagar. Calm, minimal, and perfect for slow coffee moments.",
   },
   {
-    username: "@tokyo_drifter",
-    tag: "TASTE",
-    quote: "Best Dirty Matcha in Shibuya. No cap.",
+    username: "Regular Visitor",
+    tag: "ATMOSPHERE",
+    quote: "Loved the aesthetics and vibe. Great spot if you enjoy quiet cafés and specialty drinks.",
   },
   {
-    username: "@design_nerd",
-    tag: "DESIGN",
-    quote: "The typography here heals my soul.",
-  },
-  {
-    username: "@caffeine_addict",
-    tag: "MOOD",
-    quote: "I live here now. Send rent money.",
+    username: "Coffee Enthusiast",
+    tag: "QUALITY",
+    quote: "Thoughtfully brewed coffee in a peaceful space. Kinya feels like a hidden gem in the neighborhood.",
   },
 ];
 
@@ -39,7 +40,7 @@ const TestimonialCard = ({ username, tag, quote }: TestimonialProps) => {
       <div className="flex items-center justify-between mb-4">
         <div>
           <p className="font-bold text-sm">{username}</p>
-          <p className="text-xs text-muted-foreground">Verified Sipper</p>
+          <p className="text-xs text-muted-foreground">Google Reviews</p>
         </div>
         <motion.span
           whileHover={{ scale: 1.1 }}
@@ -56,6 +57,22 @@ const TestimonialCard = ({ username, tag, quote }: TestimonialProps) => {
 const TestimonialsSection = () => {
   return (
     <section className="py-24 overflow-hidden">
+      {/* Header */}
+      <StaggerContainer className="max-w-7xl mx-auto px-4 md:px-8 mb-12 text-center">
+        <StaggerItem>
+          <h2 className="text-5xl md:text-6xl font-display font-black leading-tight mb-4">
+            WHAT OUR<br />CUSTOMERS SAY
+          </h2>
+        </StaggerItem>
+        <StaggerItem>
+          <div className="flex items-center justify-center gap-2 text-lg">
+            <span className="text-3xl">⭐</span>
+            <span className="font-bold">4.5 rating</span>
+            <span className="text-muted-foreground">• Based on 449 Google reviews</span>
+          </div>
+        </StaggerItem>
+      </StaggerContainer>
+
       {/* Scrolling Testimonials */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}

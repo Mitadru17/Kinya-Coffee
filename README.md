@@ -1,4 +1,22 @@
-# Welcome to your Lovable project
+# Kinya Coffee - Specialty Café Website
+
+A minimal, Japanese-inspired specialty coffee café website for Kinya Coffee in JP Nagar, Bengaluru.
+
+## About Kinya Coffee
+
+Kinya Coffee is a quiet neighborhood café designed for people who enjoy slow mornings, mindful sipping, and calm spaces. We serve specialty coffee, handcrafted beverages, and freshly baked treats in a minimal, intimate setting.
+
+### Location
+132, Dollars Colony, 7th Main, 16th Cross Rd  
+Behind MK Ahmed Bazar  
+JP Nagar 4th Phase  
+Bengaluru, Karnataka 560078
+
+### Hours
+Daily: 8:00 AM - 9:00 PM
+
+### Contact
+Phone: +91 96111 49286
 
 ## Project info
 

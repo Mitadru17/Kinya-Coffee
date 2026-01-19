@@ -4,7 +4,7 @@ import { ScrollReveal, StaggerContainer, StaggerItem } from "./animations/Scroll
 
 const Footer = () => {
   return (
-    <footer id="contact" className="py-16 px-4 md:px-8 border-t border-border">
+    <footer className="py-16 px-4 md:px-8 bg-forest text-cream">
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-4 gap-12 mb-16">
           {/* Brand */}
@@ -13,36 +13,35 @@ const Footer = () => {
               <motion.div
                 whileHover={{ rotate: 360 }}
                 transition={{ duration: 0.5 }}
-                className="w-12 h-12 bg-primary rounded-full flex items-center justify-center"
+                className="w-12 h-12 bg-cream rounded-full flex items-center justify-center"
               >
-                <Star className="w-6 h-6 text-primary-foreground fill-primary-foreground" />
+                <Star className="w-6 h-6 text-forest fill-forest" />
               </motion.div>
               <div>
-                <h3 className="font-bold text-xl">TOKYO SIP CLUB</h3>
-                <p className="text-sm text-muted-foreground">Est. 2025</p>
+                <h3 className="font-display font-black text-xl text-cream">KINYA COFFEE</h3>
+                <p className="text-sm text-cream/70">JP Nagar, Bengaluru</p>
               </div>
             </div>
-            <p className="text-muted-foreground max-w-sm">
-              Where traditional meets digital. A third-wave coffee experience 
-              designed for the always-online generation.
+            <p className="text-cream/80 max-w-sm">
+              A quiet neighborhood café inspired by Japanese minimalism. 
+              Specialty coffee, matcha, and fresh bakery in a calm, intimate space.
             </p>
           </ScrollReveal>
 
           {/* Hours */}
           <StaggerContainer staggerDelay={0.1}>
             <StaggerItem>
-              <h4 className="font-bold mb-4 text-sm tracking-wider">HOURS</h4>
+              <h4 className="font-bold mb-4 text-sm tracking-wider text-cream">HOURS</h4>
             </StaggerItem>
-            <div className="space-y-2 text-sm text-muted-foreground">
-              <StaggerItem><p>Mon - Fri: 8:00 - 22:00</p></StaggerItem>
-              <StaggerItem><p>Sat - Sun: 9:00 - 23:00</p></StaggerItem>
+            <div className="space-y-2 text-sm text-cream/70">
+              <StaggerItem><p>Daily: 8:00 AM - 9:00 PM</p></StaggerItem>
               <StaggerItem>
                 <motion.p
                   animate={{ opacity: [1, 0.5, 1] }}
                   transition={{ repeat: Infinity, duration: 2 }}
-                  className="text-primary font-medium"
+                  className="text-mint font-medium"
                 >
-                  Open Late Fridays
+                  +91 96111 49286
                 </motion.p>
               </StaggerItem>
             </div>
@@ -51,29 +50,30 @@ const Footer = () => {
           {/* Location */}
           <StaggerContainer staggerDelay={0.1}>
             <StaggerItem>
-              <h4 className="font-bold mb-4 text-sm tracking-wider">LOCATION</h4>
+              <h4 className="font-bold mb-4 text-sm tracking-wider text-cream">LOCATION</h4>
             </StaggerItem>
-            <div className="space-y-2 text-sm text-muted-foreground">
-              <StaggerItem><p>2-21-1 Shibuya</p></StaggerItem>
-              <StaggerItem><p>Shibuya City, Tokyo</p></StaggerItem>
-              <StaggerItem><p>150-0002 Japan</p></StaggerItem>
+            <div className="space-y-2 text-sm text-cream/70">
+              <StaggerItem><p>132, Dollars Colony</p></StaggerItem>
+              <StaggerItem><p>7th Main, 16th Cross Rd</p></StaggerItem>
+              <StaggerItem><p>JP Nagar 4th Phase</p></StaggerItem>
+              <StaggerItem><p>Bengaluru, Karnataka 560078</p></StaggerItem>
             </div>
           </StaggerContainer>
         </div>
 
         {/* Bottom */}
         <ScrollReveal>
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-8 border-t border-border">
-            <p className="text-sm text-muted-foreground">
-              © 2025 Tokyo Sip Club. All rights reserved.
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-8 border-t border-cream/20">
+            <p className="text-sm text-cream/70">
+              © 2026 Kinya Coffee. All rights reserved.
             </p>
             <div className="flex gap-6">
               {["Instagram", "TikTok", "X (Twitter)"].map((social) => (
                 <motion.a
                   key={social}
                   href="#"
-                  whileHover={{ y: -2, color: "hsl(var(--foreground))" }}
-                  className="text-sm text-muted-foreground transition-colors"
+                  whileHover={{ y: -2, color: "hsl(var(--cream))" }}
+                  className="text-sm text-cream/70 transition-colors"
                 >
                   {social}
                 </motion.a>

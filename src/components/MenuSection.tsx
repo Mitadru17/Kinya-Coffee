@@ -44,6 +44,12 @@ const DrinkCard = ({
     NONE: "bg-gray-100 text-gray-600",
   };
 
+  // Alternate between dark green and light cream backgrounds
+  const isDark = index % 2 === 0;
+  const bgColor = isDark ? "bg-green-card" : "bg-light-green-card";
+  const textColor = isDark ? "text-cream" : "text-forest";
+  const mutedColor = isDark ? "text-cream/70" : "text-forest/60";
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 50, rotateY: -10 }}
@@ -51,15 +57,15 @@ const DrinkCard = ({
       transition={{ duration: 0.6, delay: index * 0.1, ease: [0.25, 0.4, 0.25, 1] }}
       viewport={{ once: true, margin: "-50px" }}
       whileHover={{ y: -8, transition: { duration: 0.3 } }}
-      className="drink-card rounded-2xl overflow-hidden min-w-[320px] md:min-w-[380px]"
+      className={`rounded-2xl overflow-hidden min-w-[320px] md:min-w-[380px] border border-border ${bgColor} ${textColor}`}
     >
       {/* Header */}
       <div className="p-4 flex justify-between items-start">
         <div>
-          <p className="text-sm font-medium text-muted-foreground">{number}</p>
-          <p className="text-xs text-muted-foreground">{subtitle}</p>
+          <p className={`text-sm font-medium ${mutedColor}`}>{number}</p>
+          <p className={`text-xs ${mutedColor}`}>{subtitle}</p>
         </div>
-        <span className="text-xs font-mono text-muted-foreground">JP-TYO-25</span>
+        <span className={`text-xs font-mono ${mutedColor}`}>JP-TYO-25</span>
       </div>
 
       {/* Image */}
@@ -87,21 +93,21 @@ const DrinkCard = ({
       {/* Content */}
       <div className="p-4 space-y-4">
         <div className="flex justify-between items-start">
-          <h3 className="text-xl font-bold">{name}</h3>
-          <span className="text-lg font-bold">{price}</span>
+          <h3 className={`text-xl font-display font-bold ${textColor}`}>{name}</h3>
+          <span className={`text-lg font-bold ${textColor}`}>{price}</span>
         </div>
-        <p className="text-sm text-muted-foreground">{description}</p>
+        <p className={`text-sm ${mutedColor}`}>{description}</p>
 
         {/* Metrics */}
-        <div className="grid grid-cols-2 gap-4 pt-4 border-t border-border">
+        <div className={`grid grid-cols-2 gap-4 pt-4 border-t ${isDark ? 'border-cream/20' : 'border-forest/20'}`}>
           <div>
-            <p className="text-xs text-muted-foreground mb-1">Caffeine</p>
+            <p className={`text-xs ${mutedColor} mb-1`}>Caffeine</p>
             <span className={`px-2 py-1 rounded text-xs font-bold ${caffeineColors[caffeine]}`}>
               {caffeine}
             </span>
           </div>
           <div>
-            <p className="text-xs text-muted-foreground mb-1">Vibe Level</p>
+            <p className={`text-xs ${mutedColor} mb-1`}>Vibe Level</p>
             <div className="flex gap-1">
               {[1, 2, 3, 4, 5].map((i) => (
                 <motion.div
@@ -110,7 +116,7 @@ const DrinkCard = ({
                   whileInView={{ scale: 1 }}
                   transition={{ delay: 0.5 + i * 0.05 + index * 0.1, type: "spring" }}
                   viewport={{ once: true }}
-                  className={`w-3 h-3 rounded-full ${i <= vibeLevel ? "bg-primary" : "bg-border"}`}
+                  className={`w-3 h-3 rounded-full ${i <= vibeLevel ? (isDark ? 'bg-cream' : 'bg-forest') : (isDark ? 'bg-cream/30' : 'bg-forest/30')}`}
                 />
               ))}
             </div>
@@ -124,62 +130,134 @@ const DrinkCard = ({
 const drinks = [
   {
     number: "No. 01",
-    subtitle: "/// THE OG CLASSIC",
-    image: "https://images.unsplash.com/photo-1515823064-d6e0c04616a7?q=80&w=800&auto=format&fit=crop",
-    badge: "BESTSELLER",
+    subtitle: "/// SMOOTH & CREAMY",
+    image: "https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?q=80&w=800&auto=format&fit=crop",
+    badge: "POPULAR",
     badgeType: "bestseller" as const,
-    name: "DIRTY MATCHA",
-    price: "¥800",
-    description: "Ceremonial grade matcha floating on oat milk with a double shot of espresso.",
+    name: "SPANISH LATTE",
+    price: "—",
+    description: "Silky espresso with sweetened condensed milk, perfectly balanced and smooth.",
     caffeine: "HIGH" as const,
     vibeLevel: 5,
   },
   {
     number: "No. 02",
-    subtitle: "/// SPARKLING HIT",
-    image: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?q=80&w=800&auto=format&fit=crop",
-    badge: "REFRESH",
+    subtitle: "/// CLASSIC FAVORITE",
+    image: "https://images.unsplash.com/photo-1572442388796-11668a67e53d?q=80&w=800&auto=format&fit=crop",
+    badge: "CLASSIC",
     badgeType: "refresh" as const,
-    name: "YUZU TONIC",
-    price: "¥750",
-    description: "Cold brew coffee mixed with sparkling yuzu citrus, mint, and a dash of honey.",
+    name: "CAPPUCCINO",
+    price: "—",
+    description: "Traditional Italian cappuccino with rich espresso and velvety microfoam.",
     caffeine: "MED" as const,
     vibeLevel: 4,
   },
   {
     number: "No. 03",
-    subtitle: "/// SWEET DREAMS",
-    image: "https://images.unsplash.com/photo-1708762028605-ad25725e87c3?q=80&w=800&auto=format&fit=crop",
-    badge: "SWEET",
-    badgeType: "sweet" as const,
-    name: "STRAWBERRY CLOUD",
-    price: "¥900",
-    description: "Fresh strawberry puree, hokkaido milk, topped with thick matcha cold foam.",
+    subtitle: "/// REFRESHING",
+    image: "https://images.unsplash.com/photo-1517487881594-2787fef5ebf7?q=80&w=800&auto=format&fit=crop",
+    badge: "CHILLED",
+    badgeType: "refresh" as const,
+    name: "ICED CAPPUCCINO",
+    price: "—",
+    description: "Cold version of our classic cappuccino, perfect for warm days.",
+    caffeine: "MED" as const,
+    vibeLevel: 4,
+  },
+  {
+    number: "No. 04",
+    subtitle: "/// BOLD & CLEAN",
+    image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=800&auto=format&fit=crop",
+    badge: "STRONG",
+    badgeType: "limited" as const,
+    name: "AMERICANO",
+    price: "—",
+    description: "Pure espresso diluted with hot water for a clean, bold coffee experience.",
+    caffeine: "HIGH" as const,
+    vibeLevel: 3,
+  },
+  {
+    number: "No. 05",
+    subtitle: "/// ICED & STRONG",
+    image: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?q=80&w=800&auto=format&fit=crop",
+    badge: "CHILLED",
+    badgeType: "refresh" as const,
+    name: "ICED AMERICANO",
+    price: "—",
+    description: "Bold espresso over ice, crisp and refreshing.",
+    caffeine: "HIGH" as const,
+    vibeLevel: 3,
+  },
+  {
+    number: "No. 06",
+    subtitle: "/// SMALL & MIGHTY",
+    image: "https://images.unsplash.com/photo-1511537190424-bbbab87ac5eb?q=80&w=800&auto=format&fit=crop",
+    badge: "INTENSE",
+    badgeType: "limited" as const,
+    name: "CORTADO",
+    price: "—",
+    description: "Equal parts espresso and steamed milk for a perfectly balanced shot.",
+    caffeine: "HIGH" as const,
+    vibeLevel: 4,
+  },
+  {
+    number: "No. 07",
+    subtitle: "/// FRUITY TWIST",
+    image: "https://images.unsplash.com/photo-1517487881594-2787fef5ebf7?q=80&w=800&auto=format&fit=crop",
+    badge: "SPECIAL",
+    badgeType: "new" as const,
+    name: "CRANBERRY COLD BREW",
+    price: "—",
+    description: "Smooth cold brew with a hint of tart cranberry, lightly sweetened.",
+    caffeine: "MED" as const,
+    vibeLevel: 5,
+  },
+  {
+    number: "No. 08",
+    subtitle: "/// SPICED & REFRESHING",
+    image: "https://images.unsplash.com/photo-1517487881594-2787fef5ebf7?q=80&w=800&auto=format&fit=crop",
+    badge: "UNIQUE",
+    badgeType: "new" as const,
+    name: "GINGER ALE COLD BREW",
+    price: "—",
+    description: "Cold brew coffee with ginger ale, creating a refreshing spiced flavor.",
+    caffeine: "MED" as const,
+    vibeLevel: 4,
+  },
+  {
+    number: "No. 09",
+    subtitle: "/// NUTTY & RICH",
+    image: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?q=80&w=800&auto=format&fit=crop",
+    badge: "SIGNATURE",
+    badgeType: "bestseller" as const,
+    name: "HAZELNUT MOUSSE COFFEE",
+    price: "—",
+    description: "Rich coffee topped with fluffy hazelnut mousse for a decadent treat.",
+    caffeine: "MED" as const,
+    vibeLevel: 5,
+  },
+  {
+    number: "No. 10",
+    subtitle: "/// GREEN & CALM",
+    image: "https://images.unsplash.com/photo-1515823064-d6e0c04616a7?q=80&w=800&auto=format&fit=crop",
+    badge: "BESTSELLER",
+    badgeType: "bestseller" as const,
+    name: "MATCHA LATTE",
+    price: "—",
+    description: "Ceremonial grade matcha whisked with steamed milk, smooth and earthy.",
     caffeine: "LOW" as const,
     vibeLevel: 5,
   },
   {
-    number: "No. 04",
-    subtitle: "/// GOTH LATTE",
-    image: "https://plus.unsplash.com/premium_photo-1688385990713-a4f5574d6c9b?q=80&w=800&auto=format&fit=crop",
-    badge: "LIMITED",
-    badgeType: "limited" as const,
-    name: "BLACK SESAME",
-    price: "¥850",
-    description: "Roasted black sesame paste, charcoal bamboo, and steamed soy milk.",
+    number: "No. 11",
+    subtitle: "/// SWEET & COZY",
+    image: "https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?q=80&w=800&auto=format&fit=crop",
+    badge: "COMFORT",
+    badgeType: "sweet" as const,
+    name: "HOT CHOCOLATE",
+    price: "—",
+    description: "Rich, creamy hot chocolate made with premium cocoa, perfect for comfort.",
     caffeine: "NONE" as const,
-    vibeLevel: 4,
-  },
-  {
-    number: "No. 05",
-    subtitle: "/// MAGIC TEA",
-    image: "https://images.unsplash.com/photo-1595981267035-7b04ca84a82d?q=80&w=800&auto=format&fit=crop",
-    badge: "NEW",
-    badgeType: "new" as const,
-    name: "BLUE PEA FOG",
-    price: "¥780",
-    description: "Butterfly pea flower tea that changes color with lemon, topped with vanilla foam.",
-    caffeine: "LOW" as const,
     vibeLevel: 5,
   },
 ];
@@ -198,7 +276,7 @@ const MenuSection = () => {
         <div className="flex animate-marquee whitespace-nowrap">
           {[...Array(6)].map((_, i) => (
             <span key={i} className="mx-8 text-sm font-semibold tracking-widest">
-              FRESH DROPS •
+              FRESH DAILY •
             </span>
           ))}
         </div>
@@ -209,11 +287,11 @@ const MenuSection = () => {
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <StaggerContainer>
             <StaggerItem>
-              <p className="text-sm text-muted-foreground mb-2">Vol. 2025 /// Curated List</p>
+              <p className="text-sm text-muted-foreground mb-2">Coffee & Bakery · Made Fresh</p>
             </StaggerItem>
             <StaggerItem>
-              <h2 className="text-5xl md:text-6xl font-bold">
-                CURRENT<br />ROTATION
+              <h2 className="text-5xl md:text-6xl font-display font-black leading-tight">
+                OUR<br />MENU
               </h2>
             </StaggerItem>
           </StaggerContainer>
@@ -232,8 +310,8 @@ const MenuSection = () => {
                 whileHover={{ scale: 1.05 }}
                 className="bg-card px-4 py-2 rounded-xl border border-border"
               >
-                <p className="text-3xl font-bold">05</p>
-                <p className="text-xs text-muted-foreground">Items in Stack</p>
+                <p className="text-3xl font-bold">11</p>
+                <p className="text-xs text-muted-foreground">Items Available</p>
               </motion.div>
             </div>
           </ScrollReveal>
@@ -249,16 +327,56 @@ const MenuSection = () => {
         </div>
       </div>
 
-      {/* View Full Archive */}
+      {/* View Full Menu */}
       <ScrollReveal className="text-center mt-12">
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           className="btn-outline uppercase text-sm"
         >
-          View Full Archive ↗
+          View Full Menu →
         </motion.button>
       </ScrollReveal>
+
+      {/* Bakery Section */}
+      <div className="max-w-7xl mx-auto px-4 md:px-8 mt-24">
+        <StaggerContainer>
+          <StaggerItem>
+            <p className="text-sm text-muted-foreground mb-2">Fresh Daily · Bakery</p>
+          </StaggerItem>
+          <StaggerItem>
+            <h3 className="text-4xl md:text-5xl font-display font-black leading-tight mb-8">
+              BAKERY & BITES
+            </h3>
+          </StaggerItem>
+        </StaggerContainer>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {[
+            { name: "Korean Bun", desc: "Soft and creamy", tag: "Popular" },
+            { name: "Almond Croissant", desc: "Buttery and flaky", tag: "Classic" },
+            { name: "Vegan Cookies", desc: "Plant-based goodness", tag: "Healthy" },
+            { name: "Classic Bun", desc: "Freshly baked daily", tag: "Daily" },
+          ].map((item, index) => (
+            <motion.div
+              key={item.name}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -5 }}
+              className="bg-card p-6 rounded-2xl border border-border"
+            >
+              <span className="text-xs font-bold text-forest bg-mint px-2 py-1 rounded-full">
+                {item.tag}
+              </span>
+              <h4 className="font-display font-bold text-xl mt-4 mb-2">{item.name}</h4>
+              <p className="text-sm text-muted-foreground">{item.desc}</p>
+              <p className="text-sm font-bold mt-3 text-muted-foreground">Ask in store</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
     </section>
   );
 };

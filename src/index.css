@@ -1,48 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Black+Ops+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+/* Lenis Smooth Scroll */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
 
 @layer base {
   :root {
-    /* Tokyo Sip Club Color Palette */
-    --background: 45 30% 94%;
-    --foreground: 150 50% 15%;
+    /* Kinya Organic-Industrial Color System */
+    --canvas: 38 22% 86%; /* #E3DDD1 - Lime Plaster/Raw Sand */
+    --ink: 23 24% 14%; /* #2C241B - Deep Espresso/Charred Wood */
+    --terracotta: 16 61% 61%; /* #D97C5B - Burnt Terracotta/Clay */
+    --chrome: 0 0% 55%; /* #8C8C8C - Stainless Steel/Chrome */
+    /* Kinya Organic-Industrial Color System */
+    --canvas: 38 22% 86%; /* #E3DDD1 - Lime Plaster/Raw Sand */
+    --ink: 23 24% 14%; /* #2C241B - Deep Espresso/Charred Wood */
+    --terracotta: 16 61% 61%; /* #D97C5B - Burnt Terracotta/Clay */
+    --chrome: 0 0% 55%; /* #8C8C8C - Stainless Steel/Chrome */
+    
+    --background: 38 22% 86%;
+    --foreground: 23 24% 14%;
 
-    --card: 45 25% 90%;
-    --card-foreground: 150 50% 15%;
+    --card: 38 22% 86%;
+    --card-foreground: 23 24% 14%;
 
-    --popover: 45 30% 94%;
-    --popover-foreground: 150 50% 15%;
+    --popover: 38 22% 86%;
+    --popover-foreground: 23 24% 14%;
 
-    --primary: 150 50% 15%;
-    --primary-foreground: 45 30% 94%;
+    --primary: 23 24% 14%;
+    --primary-foreground: 38 22% 86%;
 
-    --secondary: 150 30% 25%;
-    --secondary-foreground: 45 30% 94%;
+    --secondary: 0 0% 55%;
+    --secondary-foreground: 23 24% 14%;
 
-    --muted: 45 20% 88%;
-    --muted-foreground: 150 30% 35%;
+    --muted: 0 0% 55%;
+    --muted-foreground: 23 24% 14%;
 
-    --accent: 150 40% 20%;
-    --accent-foreground: 45 30% 94%;
+    --accent: 16 61% 61%;
+    --accent-foreground: 23 24% 14%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 38 22% 86%;
 
-    --border: 150 20% 80%;
-    --input: 150 20% 80%;
-    --ring: 150 50% 15%;
+    --border: 23 24% 14%;
+    --input: 23 24% 14%;
+    --ring: 23 24% 14%;
 
-    --radius: 0.5rem;
-
-    /* Custom tokens */
-    --cream: 45 30% 94%;
-    --cream-dark: 45 25% 88%;
-    --forest: 150 50% 15%;
-    --forest-light: 150 40% 25%;
-    --mint: 150 30% 75%;
+    --radius: 0rem;
   }
 
   .dark {
@@ -70,12 +96,77 @@
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-ink;
+  }
+
+  html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+  }
+
+  /* Smooth scrolling with custom easing */
+  html, body {
+    scroll-behavior: smooth;
+  }
+
+  /* For browsers that support scroll-timeline */
+  @supports (animation-timeline: scroll()) {
+    html {
+      scroll-behavior: smooth;
+    }
   }
 
   body {
-    @apply bg-background text-foreground antialiased;
-    font-family: 'Space Grotesk', sans-serif;
+    @apply bg-canvas text-ink antialiased;
+    font-family: 'JetBrains Mono', 'Space Mono', monospace;
+    position: relative;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='3.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  .serif-font {
+    font-family: 'Playfair Display', 'Georgia', serif;
+    font-weight: 700;
+  }
+
+  .display-font {
+    font-family: 'Bebas Neue', 'Black Ops One', 'Impact', 'Arial Black', sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    line-height: 0.9;
+  }
+
+  .mono-font {
+    font-family: 'Space Mono', 'JetBrains Mono', 'Courier New', monospace;
+    font-weight: 400;
+  }
+
+  .brutalist-border {
+    border: 2px solid hsl(var(--ink));
+  }
+
+  .brutalist-border-2 {
+    border: 2px solid hsl(var(--ink));
+  }
+
+  .terracotta-border {
+    border: 2px solid hsl(var(--terracotta));
+  }
+
+  .chrome-border {
+    border: 1px solid hsl(var(--chrome));
   }
 }
 
@@ -87,6 +178,10 @@
   100% {
     transform: translateX(-50%);
   }
+}
+
+.animate-marquee {
+  animation: marquee 40s linear infinite;
 }
 
 @keyframes rotate-slow {
@@ -119,7 +214,7 @@
 }
 
 .animate-marquee {
-  animation: marquee 20s linear infinite;
+  animation: marquee 40s linear infinite;
 }
 
 .animate-rotate-slow {
@@ -150,8 +245,6 @@
 
 /* Drink Card Style */
 .drink-card {
-  background: linear-gradient(180deg, hsl(45 30% 96%) 0%, hsl(45 25% 90%) 100%);
-  border: 1px solid hsl(var(--border));
   transition: all 0.3s ease;
 }
 
@@ -189,21 +282,6 @@
 
 .badge-new {
   @apply bg-accent text-accent-foreground px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-full;
-}
-
-/* Scrollbar Styling */
-::-webkit-scrollbar {
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: hsl(var(--cream-dark));
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: hsl(var(--forest));
-  border-radius: 4px;
 }
 
 /* Star decoration */
