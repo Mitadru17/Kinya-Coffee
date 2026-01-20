@@ -8,6 +8,7 @@ import { useRef, useEffect, useState } from "react";
 import SmoothScroll from "./components/SmoothScroll";
 import PageTransition from "./components/PageTransition";
 import SplitTransition from "./components/SplitTransition";
+import BackgroundMusic from "./components/BackgroundMusic";
 import Index from "./pages/Index";
 import MenuPage from "./pages/MenuPage";
 import WorkshopsPage from "./pages/WorkshopsPage";
@@ -66,6 +67,7 @@ const App = () => (
       <SmoothScroll>
         <Toaster />
         <Sonner />
+        <BackgroundMusic />
         <BrowserRouter>
           <AnimatedRoutes />
         </BrowserRouter>
