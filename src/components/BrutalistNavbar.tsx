@@ -107,7 +107,7 @@ const BrutalistNavbar = () => {
           <motion.button
             whileTap={{ scale: 0.9 }}
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden w-12 h-12 flex items-center justify-center border-2 border-ink"
+            className="md:hidden ml-auto w-12 h-12 flex items-center justify-center border-2 border-ink"
           >
             {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </motion.button>
